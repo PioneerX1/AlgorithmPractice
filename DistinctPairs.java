@@ -26,6 +26,7 @@ public class DistinctPairs {
           if (pairsMap.containsKey(higher)) {
             // do not add, already exists in the hash map
           } else {
+            // use the higher int as the key every time
             pairsMap.put(higher, lower);
           }
         }
