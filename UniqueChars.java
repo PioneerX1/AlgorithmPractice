@@ -19,16 +19,27 @@ public class UniqueChars {
     return "YES, all unique chars!";
   }
 
-  // private static String unique2(String input) {
-  //
-  // }
+  private static String unique2(String input) {
+    Map<Character, Integer> charMap = new HashMap<Character, Integer>();
+
+    for(int i = 0; i < input.length(); i++) {
+      if(charMap.containsKey(input.charAt(i))) {
+        return "NO, duplicates present.";
+      } else {
+        charMap.put(input.charAt(i), 1);
+      }
+    }
+
+    return "YES, all unique chars!";
+
+  }
 
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
     System.out.println("UniqueChars reads one string of input and outputs YES if it contains all unique chars or NO if it does not");
     String input = scanner.nextLine();
 
-    System.out.println(unique1(input));
+    System.out.println(unique2(input));
 
   }
 
