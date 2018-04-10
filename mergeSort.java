@@ -4,7 +4,7 @@ import java.text.*;
 import java.math.*;
 import java.util.regex.*;
 
-public class mergeSort {
+public class MergeSort {
 
   //static void mergeArray(int []a1, int []b1, int M) {
   public static void main(String [] args) {
