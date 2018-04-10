@@ -2,8 +2,8 @@ import java.util.*;
 
 public class StackWithTwoQueues {
 
-  private static Queue<Integer> qMain = new ArrayDeque<Integer>();
-  private static Queue<Integer> qTemp = new ArrayDeque<Integer>();
+  private static Deque<Integer> qMain = new ArrayDeque<Integer>();
+  private static boolean correctOrder = false;
 
   // PUSH
   private static void skPush(int entry) {
@@ -14,14 +14,39 @@ public class StackWithTwoQueues {
       return;
     }
 
-    qTemp = qMain;
-    qMain.add(entry);
-    Iterator itr = qTemp.iterator();
-    System.out.println("Contents in qTemp");
-    while (itr.hasNext()) {
-      System.out.print(itr.next() + " ");
+    // first, populate temp queue with contents from main queue
+    Deque<Integer> qTemp = new ArrayDeque<Integer>();
+
+    for(Iterator itr = qMain.iterator(); itr.hasNext();) {
+      int temp = Integer.parseInt(itr.next()+"");
+      qTemp.add(temp);
     }
-    System.out.println("");
+
+    // second, empty the main queue
+    for(Iterator itr = qMain.iterator(); itr.hasNext();) {
+      qMain.remove(itr.next());
+    }
+
+    // third, add new entry into the main queue
+    qMain.add(entry);
+
+    // fourth, add temp queue entries back into main queue - descending iterator?
+    // need a global variable for switch, otherwise you would reverse iterator order everytime, inaccurate results
+
+    if (!correctOrder) {
+      for(Iterator descItr = qTemp.descendingIterator(); descItr.hasNext();) {
+        int temp = Integer.parseInt(descItr.next()+"");
+        //Integer temp = descItr.next();
+        qMain.add(temp);
+      }
+    } else {
+      for(Iterator itr = qTemp.iterator(); itr.hasNext();) {
+        int temp = Integer.parseInt(itr.next()+"");
+        qMain.add(temp);
+      }
+    }
+
+    correctOrder = !correctOrder;
 
   }
 
