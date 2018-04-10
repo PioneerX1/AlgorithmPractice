@@ -7,6 +7,7 @@ import java.util.*;
 
 public class UniqueChars {
 
+  // No additional structures used, but it is the slowest
   private static String unique1(String input) {
     for(int i = 0; i < input.length() - 1; i++) {
       for(int k = i + 1; k < input.length(); k++) {
@@ -19,6 +20,7 @@ public class UniqueChars {
     return "YES, all unique chars!";
   }
 
+  // HashMap uses another structure but takes less time
   private static String unique2(String input) {
     Map<Character, Integer> charMap = new HashMap<Character, Integer>();
 
@@ -31,6 +33,21 @@ public class UniqueChars {
     }
 
     return "YES, all unique chars!";
+  }
+
+  // Here's a better way than HashMap, just use an additional String data structure
+  private static String unique3(String input) {
+    String temp = "";
+
+    for(int i = 0; i < input.length(); i++) {
+      if(temp.contains(""+ input.charAt(i))) {
+        return "NO, duplicates present.";
+      } else {
+        temp += input.charAt(i);
+      }
+    }
+
+    return "YES, all unique chars!";
 
   }
 
@@ -39,7 +56,7 @@ public class UniqueChars {
     System.out.println("UniqueChars reads one string of input and outputs YES if it contains all unique chars or NO if it does not");
     String input = scanner.nextLine();
 
-    System.out.println(unique2(input));
+    System.out.println(unique3(input));
 
   }
 
