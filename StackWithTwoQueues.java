@@ -3,13 +3,12 @@ import java.util.*;
 public class StackWithTwoQueues {
 
   private static Deque<Integer> qMain = new ArrayDeque<Integer>();
-  private static boolean correctOrder = false;
 
   // PUSH
   private static void skPush(int entry) {
-    System.out.println("PUSH function reached");
+    //System.out.println("PUSH function reached");
     if (qMain.isEmpty()) {
-      System.out.println("First value added");
+      //System.out.println("First value added");
       qMain.add(entry);
       return;
     }
@@ -31,22 +30,10 @@ public class StackWithTwoQueues {
     qMain.add(entry);
 
     // fourth, add temp queue entries back into main queue - descending iterator?
-    // need a global variable for switch, otherwise you would reverse iterator order everytime, inaccurate results
-
-    if (!correctOrder) {
-      for(Iterator descItr = qTemp.descendingIterator(); descItr.hasNext();) {
-        int temp = Integer.parseInt(descItr.next()+"");
-        //Integer temp = descItr.next();
-        qMain.add(temp);
-      }
-    } else {
-      for(Iterator itr = qTemp.iterator(); itr.hasNext();) {
-        int temp = Integer.parseInt(itr.next()+"");
-        qMain.add(temp);
-      }
+    for(Iterator itr = qTemp.iterator(); itr.hasNext();) {
+      int temp = Integer.parseInt(itr.next()+"");
+      qMain.add(temp);
     }
-
-    correctOrder = !correctOrder;
 
   }
 
