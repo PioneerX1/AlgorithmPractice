@@ -3,12 +3,12 @@ import java.util.*;
 public class StackWithTwoQueues {
 
   private static Deque<Integer> qMain = new ArrayDeque<Integer>();
+  private static int peakValue;
 
   // PUSH
   private static void skPush(int entry) {
     //System.out.println("PUSH function reached");
     if (qMain.isEmpty()) {
-      //System.out.println("First value added");
       qMain.add(entry);
       return;
     }
@@ -39,8 +39,34 @@ public class StackWithTwoQueues {
 
   // POP
   private static void skPop() {
+    if (qMain.size() == 0) {
+      qMain.poll();   // or do nothing
+    } else {
+      System.out.println(qMain.poll() + " is removed");
+    }
+  }
 
-    qMain.remove();
+  // PEAK
+  private static void skPeek() {
+    if (qMain.size() == 0) {
+      System.out.println("No entries exist to peek at");
+    } else {
+      System.out.println("Top entry is: " + qMain.peek());
+    }
+  }
+
+  // IS EMPTY
+  private static void skIsEmpty() {
+    if (qMain.size() == 0) {
+      System.out.println("Queue is EMPTY");
+    } else {
+      System.out.println("Queue has contents");
+    }
+  }
+
+  // SIZE
+  private static void skSize() {
+    System.out.println("Size is: " + qMain.size());
   }
 
   // VIEW FULL STACK
@@ -87,13 +113,16 @@ public class StackWithTwoQueues {
         skPop();
 
       } else if (choice == 3) {
-        System.out.println(choice + ": PEAK selected");
+        System.out.println(choice + ": PEEK selected");
+        skPeek();
 
       } else if (choice == 4) {
         System.out.println(choice + ": CHECK EMPTY selected");
+        skIsEmpty();
 
       } else if (choice == 5) {
         System.out.println(choice + ": CHECK SIZE selected");
+        skSize();
 
       } else if (choice == 6) {
         System.out.println(choice + ": VIEW the full stack");
