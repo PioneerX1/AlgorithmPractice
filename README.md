@@ -1,5 +1,5 @@
 # AlgorithmPractice
-just to a repo for me to supplement my Algorithms &amp; Data Structures class
+This is a repo for me to supplement my Algorithms &amp; Data Structures class. Most exercises are in Java and run on the command line.
 
 Clone the repo directory.
 Pick a java class you want to test out.
