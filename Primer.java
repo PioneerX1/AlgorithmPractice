@@ -6,8 +6,34 @@ import java.util.*;
 
 public class Primer {
 
-  private static List<Integer> findPrimesNaive(int input) {
+  // much faster algorithm, still fast up to 10,000,000, and still works with lag up to 100,000,000 atleast 
+  private static List<Integer> sieveOfEratosthenes(int input) {
+    List<Integer> finalPrimes = new ArrayList<Integer>();
 
+    // initialize boolean primes array to true mostly
+    boolean[] boolPrimes = new boolean[input + 1];
+    boolPrimes[0] = false;
+    boolPrimes[1] = false;
+    for (int i = 2; i < boolPrimes.length; i++) {
+      boolPrimes[i] = true;
+    }
+
+    // set indexes to true or false depending on prime
+    for (int i = 2; i < boolPrimes.length; i++) {
+      if (boolPrimes[i]) {
+        // set all multiples of that prime to false
+        for (int k = i; k < boolPrimes.length; k += i) {
+          boolPrimes[k] = false;
+        }
+        finalPrimes.add(i);
+      }
+    }
+
+    return finalPrimes;
+  }
+
+  // naive algorithm, slows down noticeably if input is higher than 10,000
+  private static List<Integer> findPrimesNaive(int input) {
     List<Integer> primes = new ArrayList<Integer>();
 
     for (int k = 2; k < (input + 1); k++) {
@@ -34,7 +60,8 @@ public class Primer {
     Scanner scanner = new Scanner(System.in);
     int input = Integer.parseInt(scanner.nextLine());
 
-    List<Integer> primes = findPrimesNaive(input);
+    //List<Integer> primes = findPrimesNaive(input);
+    List<Integer> primes = sieveOfEratosthenes(input);
 
     for(int prime : primes) {
       System.out.print(prime + " ");
