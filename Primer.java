@@ -6,11 +6,11 @@ import java.util.*;
 
 public class Primer {
 
-  private static int[] findPrimesNaive(int input) {
+  private static List<Integer> findPrimesNaive(int input) {
 
-    int[] primes = new int[input + 1];
+    List<Integer> primes = new ArrayList<Integer>();
 
-    for (int k = 2; k < primes.length; k++) {
+    for (int k = 2; k < (input + 1); k++) {
       boolean isPrime = true;
       for (int i = k - 1; i > 1; i--) {
         if (k % i == 0) {
@@ -19,7 +19,7 @@ public class Primer {
         }
       }
       if (isPrime) {
-        primes[k] = k;
+        primes.add(k);
       } else {
         // do not add
       }
@@ -34,12 +34,12 @@ public class Primer {
     Scanner scanner = new Scanner(System.in);
     int input = Integer.parseInt(scanner.nextLine());
 
-    int[] primes = findPrimesNaive(input);
+    List<Integer> primes = findPrimesNaive(input);
+
     for(int prime : primes) {
-      if (prime > 0) {
-        System.out.print(prime + " ");
-      }
+      System.out.print(prime + " ");
     }
     System.out.println("");
+    System.out.println("There are " + primes.size() + " primes from 2 to " + input);
   }
 }
