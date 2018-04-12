@@ -6,7 +6,7 @@ import java.util.*;
 
 public class Primer {
 
-  // much faster algorithm, still fast up to 10,000,000, and still works with lag up to 100,000,000 atleast 
+  // much faster algorithm, still fast up to 10,000,000, and still works with lag up to 100,000,000 atleast
   private static List<Integer> sieveOfEratosthenes(int input) {
     List<Integer> finalPrimes = new ArrayList<Integer>();
 
@@ -22,7 +22,7 @@ public class Primer {
     for (int i = 2; i < boolPrimes.length; i++) {
       if (boolPrimes[i]) {
         // set all multiples of that prime to false
-        for (int k = i; k < boolPrimes.length; k += i) {
+        for (int k = i * 2; k < boolPrimes.length; k += i) {
           boolPrimes[k] = false;
         }
         finalPrimes.add(i);
